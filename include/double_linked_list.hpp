@@ -98,8 +98,9 @@ void DoubleLinkedList<T>::append_at_begin_node(NodeDoubleLinkedList<T> *arg) {
         head = arg;
     }
     else {
+        arg->next = head;
         head->prev = arg;
-        head = head->prev;
+        head = arg;
     }
 }
 
