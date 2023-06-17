@@ -11,9 +11,13 @@ set_target_properties(linkedListLib PROPERTIES LINKER_LANGUAGE CXX)
 add_library(doubleLinkedListLib include/double_linked_list.hpp)
 set_target_properties(doubleLinkedListLib PROPERTIES LINKER_LANGUAGE CXX)
 
+add_library(queueLib include/queue.hpp)
+set_target_properties(queueLib PROPERTIES LINKER_LANGUAGE CXX)
+
 set(LIBS
     linkedListLib
     doubleLinkedListLib
+    queueLib
 )
 
 # Create an executable
