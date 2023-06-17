@@ -16,3 +16,11 @@ namespace DoubleLinkedListErrors {
         }
     };
 };
+
+namespace QueueErrors {
+    struct IsEmpty : public std::exception {
+        const char * what() const noexcept override {
+            return "Queue is empty!\n";
+        }
+    };
+};
