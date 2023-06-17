@@ -2,6 +2,7 @@
 #include <iostream>
 #include <tuple>
 #include <string>
+#include "custom_errors.hpp"
 
 template <typename T>
 struct NodeDoubleLinkedList {
@@ -177,5 +178,42 @@ DoubleLinkedList<T>::~DoubleLinkedList() {
             }
             delete temp;
         }
+    }
+}
+
+template <typename T>
+void DoubleLinkedList<T>::remove_at_begin() {
+    if (!head) {
+        throw DoubleLinkedListErrors::IsEmpty();
+    }
+    auto temp = head;
+    if (!head->next) { // If head is the only node left
+        head = nullptr;
+    }
+    else { // If there's sth besides head
+        head = head->next;
+        head->prev = nullptr;
+    }
+    delete temp;
+}
+
+template <typename T>
+void DoubleLinkedList<T>::remove_at_end() {
+    if (!head) {
+        throw DoubleLinkedListErrors::IsEmpty();
+    }
+    auto temp = head;
+    while (temp->next != nullptr) {
+        temp = temp->next;
+    }
+    if (temp == head) { // If head is the only node left
+        head = nullptr;
+        delete temp;
+    }
+    else { // If there's sth besides head
+        auto node_to_delete = temp;
+        temp = temp->prev;
+        temp->next = nullptr;
+        delete node_to_delete;
     }
 }

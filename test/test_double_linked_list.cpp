@@ -1,8 +1,6 @@
 #include <gtest/gtest.h>
 #include "../include/double_linked_list.hpp"
 
-
-
 template <typename T>
 class DoubleLinkedListFixture : public ::testing::Test {
 public:
@@ -68,9 +66,39 @@ TEST_F(FloatingPointDoubleLinkedList, testAppendAtBeginNodeOperation) {
     EXPECT_EQ(this->output_reversed.str(), this->contents_of_linked_list_reversed.str());
 }
 
-// TEST_F(FloatingPointDoubleLinkedList, testIfExceptionThrownAfterRemovalOperationWhenListIsEmpty) {
-//     EXPECT_THROW(this->linked_list.remove(), LinkedListErrors::IsEmpty);
-// }
+TEST_F(FloatingPointDoubleLinkedList, testRemoveAtBeginOperation) {
+    this->double_linked_list.append_at_end(4.0);
+    this->double_linked_list.append_at_end(5.0);
+    this->double_linked_list.append_at_end(6.0);
+    this->double_linked_list.remove_at_begin();
+    this->output_normal << "5.000000 -> 6.000000";
+    this->output_reversed << "6.000000 -> 5.000000";
+    this->contents_of_linked_list_normal << this->normal;
+    this->contents_of_linked_list_reversed << this->reversed;
+    EXPECT_EQ(this->output_normal.str(), this->contents_of_linked_list_normal.str());
+    EXPECT_EQ(this->output_reversed.str(), this->contents_of_linked_list_reversed.str());
+}
+
+TEST_F(FloatingPointDoubleLinkedList, testRemoveAtEnd) {
+    this->double_linked_list.append_at_end(4.0);
+    this->double_linked_list.append_at_end(5.0);
+    this->double_linked_list.append_at_end(6.0);
+    this->double_linked_list.remove_at_end();
+    this->output_normal << "4.000000 -> 5.000000";
+    this->output_reversed << "5.000000 -> 4.000000";
+    this->contents_of_linked_list_normal << this->normal;
+    this->contents_of_linked_list_reversed << this->reversed;
+    EXPECT_EQ(this->output_normal.str(), this->contents_of_linked_list_normal.str());
+    EXPECT_EQ(this->output_reversed.str(), this->contents_of_linked_list_reversed.str());
+}
+
+TEST_F(FloatingPointDoubleLinkedList, testIfExceptionIsThrownAfterRemoveAtBeginOperationForEmptyList) {
+    EXPECT_THROW(this->double_linked_list.remove_at_begin(), DoubleLinkedListErrors::IsEmpty);
+}
+
+TEST_F(FloatingPointDoubleLinkedList, testIfExceptionIsThrownAfterRemoveAtEndOperationForEmptyList) {
+    EXPECT_THROW(this->double_linked_list.remove_at_end(), DoubleLinkedListErrors::IsEmpty);
+}
 
 // TEST_F(FloatingPointDoubleLinkedList, testIfOstreamOperatorReturnsIsEmptyStringWhenTryingToPrintList) {
 //     this->output << "List is empty!";

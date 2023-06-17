@@ -8,3 +8,11 @@ namespace LinkedListErrors {
         }
     };
 };
+
+namespace DoubleLinkedListErrors {
+    struct IsEmpty : public std::exception {
+        const char * what() const noexcept override {
+            return "DoubleLinkedList is empty!\n";
+        }
+    };
+};

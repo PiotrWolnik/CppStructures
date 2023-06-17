@@ -28,5 +28,9 @@ int main() {
     auto new_node2 = new NodeDoubleLinkedList<int>{.value=8}; 
     double_linked_list.append_at_begin(new_node2);
     std::cout << DoubleLinkedList<int>::DoubleLinkedListForReversedOption{double_linked_list, true} << std::endl;
+    double_linked_list.remove_at_begin();
+    double_linked_list.remove_at_end();
+    std::cout << DoubleLinkedList<int>::DoubleLinkedListForReversedOption{double_linked_list, true} << std::endl;
+    
     return EXIT_SUCCESS;
 }
