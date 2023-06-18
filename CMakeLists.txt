@@ -31,6 +31,7 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 set(TESTS
     test/test_linked_list.cpp
     test/test_double_linked_list.cpp
+    test/test_queue.cpp
 )
 
 add_executable(Google_Tests_run ${TESTS})

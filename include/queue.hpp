@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "custom_errors.hpp"
 
 template <typename T>
 struct Node {
@@ -59,21 +60,23 @@ void Queue<T>::remove() {
         auto temp = head;
         if (!head->next) {
             head = nullptr;
-            delete temp;
-        }
-        else {
+        } else {
             head = head->next;
-            delete temp;
+            temp->next = nullptr;
         }
+        delete temp;
+        
     }
 }
 
 template <typename T>
 Queue<T>::~Queue() {
-    auto temp = head;
-    while (temp->next != nullptr)
-        remove();
-    delete head;
+    if (head) {
+        auto temp = head;
+        while (temp->next != nullptr)
+            remove();
+        delete head;
+    }
 }
 
 template <typename Type>
